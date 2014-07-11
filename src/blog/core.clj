@@ -23,8 +23,11 @@
        butlast
        (str/join "/")))
 
-(defhtml page-html [body]
+(defhtml page-html [title & body]
   (page/html5
+   [:head
+    [:title title]
+    (page/include-css "http://fonts.googleapis.com/css?family=Crimson+Text")]
    [:body body]))
 
 (defhtml index-html [posts]
@@ -74,20 +77,19 @@
 (defn posts [path]
   (map file->post (md-files path)))
 
-(defn write-page! [path body]
-  (spit path (page-html body)))
+(defn write-page! [path title body]
+  (spit path (page-html title body)))
 
-(defn write-post! [post]
-  (let [path (:path post)]
-    (fs/mkdirs (base-path path))
-    (write-page! (str path ".html") (post-html post))))
+(defnk write-post! [path [:metadata title] :as post]
+  (fs/mkdirs (base-path path))
+  (write-page! (str path ".html") title (post-html post)))
 
 (defn write-posts! [posts]
   (doseq [p posts]
     (write-post! p)))
 
 (defn write-index! [posts]
-  (write-page! "index.html" (index-html posts)))
+  (write-page! "index.html" "Conner Petzold" (index-html posts)))
 
 (defn write-blog! [posts]
   (doto posts
