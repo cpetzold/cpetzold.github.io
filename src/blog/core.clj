@@ -1,4 +1,5 @@
 (ns blog.core
+  (:use plumbing.core)
   (:require
    [clojure.string :as str]
    [me.raynes.fs :as fs]
@@ -14,6 +15,9 @@
     (if (= i n)
       s
       (recur (inc i) (str/replace-first s match replacement)))))
+
+(defn base-path [path]
+  (str/replace path #"/[^/]+$" ""))
 
 (defhtml page [body]
   (page/html5
@@ -41,21 +45,22 @@
 (defn posts [path]
   (map file->post (md-files path)))
 
-(defn write-post! [path-prefix post]
-  (let [path (str (when path-prefix (str path-prefix "/")) (:path post))]
-    (fs/mkdirs path)
-    (spit (str path "/index.html")
+(defn write-post! [post]
+  (let [path (:path post)]
+    (fs/mkdirs (base-path path))
+    (spit (str path ".html")
           (page (:html post)))))
 
-(defn write-posts! [path-prefix posts]
+(defn write-posts! [posts]
   (doseq [p posts]
-    (write-post! path-prefix p)))
+    (write-post! p)))
 
 (comment
 
   (->> (md-files "posts")
        (map file->post)
-       (write-posts! nil))
+       write-posts!)
+
 
 
   )
