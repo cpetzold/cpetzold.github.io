@@ -15,8 +15,6 @@
       s
       (recur (inc i) (str/replace-first s match replacement)))))
 
-(replace-first "1.1.1.1.1" 3 #"\." "!")
-
 (defhtml page [body]
   (page/html5
    [:body
@@ -44,7 +42,7 @@
   (map file->post (md-files path)))
 
 (defn write-post! [path-prefix post]
-  (let [path (str path-prefix "/" (:path post))]
+  (let [path (str (when path-prefix (str path-prefix "/")) (:path post))]
     (fs/mkdirs path)
     (spit (str path "/index.html")
           (page (:html post)))))
@@ -57,7 +55,7 @@
 
   (->> (md-files "posts")
        (map file->post)
-       (write-posts! "_site"))
+       (write-posts! nil))
 
 
   )
