@@ -69,13 +69,14 @@
         file-str (slurp file)
         md (strip-metadata file-str)]
     {:file-name file-name
-     :path (file-name->path file-name)
+     :path (-> file-name file-name->path fs/base-name)
      :md md
      :metadata (metadata file-str)
      :html (md/md-to-html-string md)}))
 
 (defn md-files [path]
   (fs/find-files path #".*\.(md|markdown)$"))
+
 (defn posts [path]
   (map file->post (md-files path)))
 
