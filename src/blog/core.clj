@@ -7,7 +7,8 @@
    [hiccup.page :as page]
    [hiccup.core :as hiccup]
    [garden.core :as garden]
-   [markdown.core :as md]))
+   [markdown.core :as md]
+   [blog.css :as css]))
 
 (def +meta-regexp+ #"^\s*([\w-]+:\s*[\w-\s]+\n)*[\w-]+:\s*[\w-]+")
 
@@ -27,8 +28,10 @@
   (page/html5
    [:head
     [:title title]
-    (page/include-css "http://fonts.googleapis.com/css?family=Crimson+Text")]
-   [:body body]))
+    (page/include-css "http://fonts.googleapis.com/css?family=Crimson+Text")
+    [:style (garden/css css/styles)]]
+   [:body
+    [:div#container body]]))
 
 (defhtml index-html [posts]
   [:ol
@@ -73,7 +76,6 @@
 
 (defn md-files [path]
   (fs/find-files path #".*\.(md|markdown)$"))
-
 (defn posts [path]
   (map file->post (md-files path)))
 
