@@ -48,23 +48,24 @@
    "Post filename must be in the format YYYY-MM-DD-*")
   (replace-first file-name 3 #"-" "/"))
 
-(defn metadata [md]
-  (for-map [line (-> (re-find +meta-regexp+ md) first (str/split #"\n"))
+(defn metadata [s]
+  (for-map [line (-> (re-find +meta-regexp+ s) first (str/split #"\n"))
             :let [[key val] (map str/trim (str/split line #":"))]]
     (keyword (str/lower-case key)) val))
 
-(defn strip-metadata [md]
-  (str/replace
-   (str/replace md +meta-regexp+ "")
-   #"^\s*" ""))
+(defn strip-metadata [s]
+  (-> s
+      (str/replace +meta-regexp+ "")
+      (str/replace #"^\s*" "")))
 
 (defn file->post [file]
   (let [file-name (fs/name file)
-        md (slurp file)]
+        file-str (slurp file)
+        md (strip-metadata file-str)]
     {:file-name file-name
      :path (file-name->path file-name)
-     :md (strip-metadata md)
-     :metadata (metadata md)
+     :md md
+     :metadata (metadata file-str)
      :html (md/md-to-html-string md)}))
 
 (defn md-files [path]
