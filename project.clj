@@ -8,4 +8,4 @@
                  [me.raynes/fs "1.4.4"]
                  [hiccup "1.0.5"]
                  [garden "1.1.6"]
-                 [markdown-clj "0.9.46"]])
+                 [endophile "0.1.2"]])

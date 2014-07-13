@@ -6,8 +6,10 @@
    [hiccup.def :refer [defhtml]]
    [hiccup.page :as page]
    [hiccup.core :as hiccup]
+   hiccup.compiler
    [garden.core :as garden]
-   [markdown.core :as md]
+   [endophile.core :refer [mp]]
+   [endophile.hiccup :refer [to-hiccup]]
    [blog.css :as css]))
 
 (def +meta-regexp+ #"^\s*([\w-]+:\s*[\w-\s]+\n)*[\w-]+:\s*[\w-]+")
@@ -28,10 +30,15 @@
   (page/html5
    [:head
     [:title title]
-    (page/include-css "http://fonts.googleapis.com/css?family=Crimson+Text")
+    (page/include-css
+     "http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700")
+    (page/include-js
+     "http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js"
+     "http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/languages/clojure.min.js")
     [:style (garden/css css/styles)]]
    [:body
-    [:div#container body]]))
+    [:div#container body]
+    [:script "hljs.initHighlightingOnLoad();"]]))
 
 (defhtml index-html [posts]
   [:ol
@@ -72,7 +79,9 @@
      :path (-> file-name file-name->path fs/base-name)
      :md md
      :metadata (metadata file-str)
-     :html (md/md-to-html-string md)}))
+     :html (-> (mp md)
+               to-hiccup
+               hiccup/html)}))
 
 (defn md-files [path]
   (fs/find-files path #".*\.(md|markdown)$"))
@@ -97,7 +106,8 @@
 (defn write-blog! [posts]
   (doto posts
     write-index!
-    write-posts!))
+    write-posts!)
+  nil)
 
 (comment
 
