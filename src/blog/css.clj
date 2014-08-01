@@ -60,5 +60,4 @@
 
   [:.hljs-string
    {:color :#43bfbf}
-   ]
-  )
+   ])

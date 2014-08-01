@@ -6,7 +6,7 @@
    [hiccup.def :refer [defhtml]]
    [hiccup.page :as page]
    [hiccup.core :as hiccup]
-   hiccup.compiler
+   [hiccup.compiler :as compiler]
    [garden.core :as garden]
    [endophile.core :refer [mp]]
    [endophile.hiccup :refer [to-hiccup]]
@@ -101,18 +101,9 @@
     (write-post! p)))
 
 (defn write-index! [posts]
-  (write-page! "index.html" "Conner Petzold" (index-html posts)))
+  (write-page! "index.html" "Conner Petzold pwn" (index-html posts)))
 
 (defn write-blog! [posts]
   (doto posts
     write-index!
-    write-posts!)
-  nil)
-
-(comment
-
-  (->> (md-files "posts")
-       (map file->post)
-       write-blog!)
-
-  )
+    write-posts!))
