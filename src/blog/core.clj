@@ -38,6 +38,12 @@
     [:style (garden/css css/styles)]]
    [:body
     [:div#header
+     [:svg#stars
+      (for [i (range 1000)]
+        [:circle.star {:r (+ 0.1 (rand 0.5))
+                       :cx (str (rand 100) "%")
+                       :cy (str (rand 100) "%")
+                       :fill (format "rgba(255,255,255,%s)" (+ 0.1 (rand 0.4)))}])]
      [:div#conner]
      [:div.bottom
       [:div.container

@@ -4,7 +4,7 @@
    [clojure.string :as str]
    [garden.def :refer [defstyles defcssfn]]
    [garden.stylesheet :refer [cssfn]]
-   [garden.units :refer [px percent em rem vmax deg]]))
+   [garden.units :refer [px percent em rem vh vmax deg]]))
 
 (defcssfn url)
 
@@ -47,7 +47,7 @@
   [:#header
    (linear-gradient "top" :#18181B :#202026)
    {:position "relative"
-    :height (rem 15)
+    :height (vh 100)
     :margin {:bottom (rem 2)}}
 
    [:.bottom
@@ -60,6 +60,14 @@
     {:color :#fff}
     [:small
      {:opacity 0.8}]]]
+
+  [:#stars
+   {:position "absolute"
+    :width (percent 100)
+    :height (percent 100)}]
+
+  [:.star
+   {:stroke-width 0}]
 
   [:#conner
    {:position "absolute"
