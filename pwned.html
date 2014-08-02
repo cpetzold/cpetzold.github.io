@@ -5,7 +5,7 @@
 }
 
 html {
-  font-size: 18px;
+  font-size: 2vmax;
 }
 
 body {
@@ -13,11 +13,49 @@ body {
   line-height: 1.8;
   color: #222;
   background: #fff;
+  margin: 0;
 }
 
-#container {
+#header {
+  background-image: linear-gradient(top, #18181B, #202026);
+  background-image: -webkit-linear-gradient(top, #18181B, #202026);
+  background-image: -moz-linear-gradient(top, #18181B, #202026);
+  background-image: -o-linear-gradient(top, #18181B, #202026);
+  margin-bottom: 2rem;
+  height: 15rem;
+  position: relative;
+}
+
+#header .bottom {
+  left: 0;
+  right: 0;
+  position: absolute;
+  bottom: 0;
+}
+
+#header h1 {
+  color: #fff;
+}
+
+#conner {
+  background-image: url(images/conner.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 40%;
+  left: 60%;
+  height: 3rem;
+  width: 3rem;
+  position: absolute;
+}
+
+.container {
   margin: 0 auto;
+  padding: 0 1rem;
   max-width: 36rem;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
 }
 
 pre {
@@ -44,4 +82,4 @@ code {
 
 .hljs-string {
   color: #43bfbf;
-}</style></head><body><div id="container"><article><h1>Pwned</h1><time datetime="7-9-2014">7-9-2014</time><p>You are pwned!!!!!!</p></article></div><script>hljs.initHighlightingOnLoad();</script></body></html>
+}</style></head><body><div id="header"><div id="conner"></div><div class="bottom"><div class="container"><h1>conner<small>.codes</small></h1></div></div></div><div class="container"><article><h1>Pwned</h1><time datetime="7-9-2014">7-9-2014</time><p>You are pwned!!!!!!</p></article></div><script>hljs.initHighlightingOnLoad();</script></body></html>

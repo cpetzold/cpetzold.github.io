@@ -37,7 +37,12 @@
      "http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/languages/clojure.min.js")
     [:style (garden/css css/styles)]]
    [:body
-    [:div#container body]
+    [:div#header
+     [:div#conner]
+     [:div.bottom
+      [:div.container
+       [:h1 "conner" [:small ".codes"]]]]]
+    [:div.container body]
     [:script "hljs.initHighlightingOnLoad();"]]))
 
 (defhtml index-html [posts]

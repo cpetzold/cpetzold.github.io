@@ -5,7 +5,7 @@
 }
 
 html {
-  font-size: 18px;
+  font-size: 2vmax;
 }
 
 body {
@@ -13,11 +13,49 @@ body {
   line-height: 1.8;
   color: #222;
   background: #fff;
+  margin: 0;
 }
 
-#container {
+#header {
+  background-image: linear-gradient(top, #18181B, #202026);
+  background-image: -webkit-linear-gradient(top, #18181B, #202026);
+  background-image: -moz-linear-gradient(top, #18181B, #202026);
+  background-image: -o-linear-gradient(top, #18181B, #202026);
+  margin-bottom: 2rem;
+  height: 15rem;
+  position: relative;
+}
+
+#header .bottom {
+  left: 0;
+  right: 0;
+  position: absolute;
+  bottom: 0;
+}
+
+#header h1 {
+  color: #fff;
+}
+
+#conner {
+  background-image: url(images/conner.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: 40%;
+  left: 60%;
+  height: 3rem;
+  width: 3rem;
+  position: absolute;
+}
+
+.container {
   margin: 0 auto;
+  padding: 0 1rem;
   max-width: 36rem;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
 }
 
 pre {
@@ -44,7 +82,7 @@ code {
 
 .hljs-string {
   color: #43bfbf;
-}</style></head><body><div id="container"><article><h1>This is a test</h1><time datetime="7-10-2014">7-10-2014</time><h2>Pharetra Mattis Fusce</h2><p>Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Nullam quis risus eget urna mollis ornare vel eu leo. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Donec ullamcorper nulla non metus auctor fringilla. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p><p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Donec id elit non mi porta gravida at eget metus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Maecenas sed diam eget risus varius blandit sit amet non magna.</p><pre><code>(defn file-&gt;post [file]
+}</style></head><body><div id="header"><div id="conner"></div><div class="bottom"><div class="container"><h1>conner<small>.codes</small></h1></div></div></div><div class="container"><article><h1>This is a test</h1><time datetime="7-10-2014">7-10-2014</time><h2>Pharetra Mattis Fusce</h2><p>Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Nullam quis risus eget urna mollis ornare vel eu leo. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Donec ullamcorper nulla non metus auctor fringilla. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p><p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Donec id elit non mi porta gravida at eget metus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Maecenas sed diam eget risus varius blandit sit amet non magna.</p><pre><code>(defn file-&gt;post [file]
   (let [file-name (fs/name file "foo bar baz")
         file-str (slurp file)
         md (strip-metadata file-str)]
