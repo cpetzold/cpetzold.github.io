@@ -57,7 +57,9 @@
      :right 0}]
 
    [:h1
-    {:color :#fff}]]
+    {:color :#fff}
+    [:small
+     {:opacity 0.8}]]]
 
   [:#conner
    {:position "absolute"
