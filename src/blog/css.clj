@@ -34,21 +34,23 @@
    "/fonts/DejaVuSansMono-webfont"
    [:woff :ttf])
 
+  [:*
+   {:box-sizing "border-box"}]
+
   [:html
-   {:font {:size (vmax 2)}}]
+   {:font {:size (vmax 1.5)}}]
 
   [:body
-   {:background :#fff
-    :color :#222
+   (linear-gradient "top" :#18181B :#202026)
+   {:color :#222
     :font {:family ["Source Sans Pro" "sans-serif"]}
     :line-height 1.8
     :margin 0}]
 
   [:#header
-   (linear-gradient "top" :#18181B :#202026)
-   {:position "relative"
-    :height (vh 100)
-    :margin {:bottom (rem 2)}}
+   {:background "transparent"
+    :position "relative"
+    :height (vh 50)}
 
    [:.bottom
     {:position "absolute"
@@ -56,13 +58,19 @@
      :left 0
      :right 0}]
 
-   [:h1
+   [:h1 :h2
     {:color :#fff}
     [:small
      {:opacity 0.8}]]]
 
+  [:#footer
+   {:height (vh 100)}]
+
   [:#stars
-   {:position "absolute"
+   {:position "fixed"
+    :z-index -1
+    :top 0
+    :left 0
     :width (percent 100)
     :height (percent 100)}]
 
@@ -71,13 +79,16 @@
 
   [:#conner
    {:position "absolute"
-    :width (rem 3)
-    :height (rem 3)
-    :left (percent 60)
-    :top (percent 40)
+    :width (rem 4)
+    :height (rem 8)
+    :left (percent 75)
+    :bottom (rem -2)
     :background {:image "url(images/conner.png)"
                  :size "contain"
                  :repeat "no-repeat"}}]
+
+  [:#content
+   {:background :#fff}]
 
   [:.container
    {:max-width (rem 36)
