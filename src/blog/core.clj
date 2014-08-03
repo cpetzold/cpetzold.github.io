@@ -35,7 +35,7 @@
     (page/include-js
      "http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js"
      "http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/languages/clojure.min.js")
-    [:style (garden/css css/styles)]]
+    [:style (garden/css {:vendors ["webkit"]} css/styles)]]
    [:body
     [:svg#stars
      (for [i (range 1000)]
@@ -43,8 +43,8 @@
                       :cx (str (rand 100) "%")
                       :cy (str (rand 100) "%")
                       :fill (format "rgba(255,255,255,%s)" (+ 0.1 (rand 0.4)))}])]
+    [:div#conner]
     [:div#header
-     [:div#conner]
      [:div.bottom
       [:div.container
        [:h1 "conner" [:small ".codes"]]]]]

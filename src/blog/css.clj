@@ -2,11 +2,13 @@
   (:refer-clojure :exclude [rem])
   (:require
    [clojure.string :as str]
-   [garden.def :refer [defstyles defcssfn]]
+   [garden.def :refer [defstyles defcssfn defkeyframes]]
    [garden.stylesheet :refer [cssfn]]
-   [garden.units :refer [px percent em rem vh vmax deg]]))
+   [garden.units :refer [px percent em rem vw vh vmax deg]]))
 
 (defcssfn url)
+
+(defcssfn translateY)
 
 (def extension->format
   {:otf "opentype"
@@ -28,7 +30,16 @@
       {:background-image (format "%slinear-gradient(%s)"
                                  prefix arg-str)})))
 
+(defkeyframes float-animation
+  [:from
+   ^:prefix {:transform (translateY 0)}]
+
+  [:to
+   ^:prefix {:transform (translateY (rem -0.4))}])
+
 (defstyles styles
+  float-animation
+
   (at-font-face
    "DejaVu Sans Mono"
    "/fonts/DejaVuSansMono-webfont"
@@ -38,7 +49,7 @@
    {:box-sizing "border-box"}]
 
   [:html
-   {:font {:size (vmax 1.5)}}]
+   {:font {:size (vmax 1.6)}}]
 
   [:body
    (linear-gradient "top" :#18181B :#202026)
@@ -78,11 +89,13 @@
    {:stroke-width 0}]
 
   [:#conner
-   {:position "absolute"
-    :width (rem 4)
-    :height (rem 8)
-    :left (percent 75)
-    :bottom (rem -2)
+   ^:prefix {:animation [[float-animation "4s" :infinite :alternate]]}
+   {:position "fixed"
+    :z-index -1
+    :width (rem 7)
+    :height (rem 7)
+    :top (vh 20)
+    :left (vw 65)
     :background {:image "url(images/conner.png)"
                  :size "contain"
                  :repeat "no-repeat"}}]
