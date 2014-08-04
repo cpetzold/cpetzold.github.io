@@ -100,8 +100,21 @@
                  :size "contain"
                  :repeat "no-repeat"}}]
 
+  [:#laptop
+   ^:prefix {:animation [[float-animation "4s" :infinite :alternate "2s"]]}
+   {:position "fixed"
+    :z-index -1
+    :width (rem 7)
+    :height (rem 7)
+    :top (vh 14)
+    :left (vw 58)
+    :background {:image "url(images/laptop.png)"
+                 :size "contain"
+                 :repeat "no-repeat"}}]
+
   [:#content
-   {:background :#fff}]
+   {:background :#fff
+    :padding [[(rem 2) 0]]}]
 
   [:.container
    {:max-width (rem 36)

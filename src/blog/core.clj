@@ -44,6 +44,7 @@
                       :cy (str (rand 100) "%")
                       :fill (format "rgba(255,255,255,%s)" (+ 0.1 (rand 0.4)))}])]
     [:div#conner]
+    [:div#laptop]
     [:div#header
      [:div.bottom
       [:div.container
